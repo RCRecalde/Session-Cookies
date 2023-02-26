@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+
+<body>
+    <form action="/" method="POST">
+        <div>
+            <label for="">Ingrese su nombre</label>
+            <input name="nombre" type="text" value="<%= locals.old ? old.nombre : null%>">
+            <% if (locals.errors && errors.nombre) { %>
+             <p><%= errors.nombre.msg %></p>  
+            <% } %>
+        </div>
+        <div>
+            <label for="">Elegir color</label>
+            <select name="color" id="">
+                <option value="Rojo">Rojo</option>
+                <option value="azul">Azul</option>
+                <option value="violeta">Violeta</option>
+                <option value="amarillo">Amarillo</option>
+                <option value="verde">Verde</option>
+            </select>
+            <% if (locals.errors && errors.color) { %>
+                <p><%= errors.color.msg %></p>  
+               <% } %>
+        </div>
+        <div>
+            <input id="color" type="checkbox" name="recordar" value="recordar"><label for="">Recordar color</label>
+        </div>
+        <div>
+            <label for="color">Ingrese su email</label>
+            <input name="email" type="email" value="<%= locals.old ? old.email : null%>">
+            <% if (locals.errors && errors.email) { %>
+                <p><%= errors.email.msg %></p>  
+               <% } %>
+        </div>
+        <div>
+            <label for="">Ingrese su edad</label>
+            <input name="edad" type="number" value="<%= locals.old ? old.edad : null%>">
+            <% if (locals.errors && errors.edad) { %>
+                <p><%= errors.edad.msg %></p>  
+               <% } %>
+        </div>
+        <div>
+            <button type="submit">Enviar</button>
+        </div>
+    </form>
+
+    <% if (locals.user) { %>
+        <div>
+          <p>Hola <%= user.nombre %>​, elegiste el color: <%= user.color %>, tu email es: <%= user.email %> ​y tu edad es <%= user.edad %></p>
+        </div>
+        <a href="/color"><button>Ir</button></a>
+        <% } %>
+</body>
+
+</html>
